@@ -1,0 +1,10 @@
+<div>
+  <span class="room-name">{{ room.name }}</span>
+  <span class="room-name">   {{ room.numberOfUsers }}/{{ room.capacity }}</span>
+  <span *ngIf="room.owned" >
+    <button class="room-delete-button" (click)="delete()">Delete</button>
+  </span>
+  <span *ngIf="room.numberOfUsers < room.capacity" >
+    <button class="room-delete-button" (click)="join()">Join</button>
+  </span>
+</div>

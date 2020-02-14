@@ -1,0 +1,161 @@
+﻿@model IdServer.Controllers.UI.RegisterViewModel
+
+    <div class="register-page">
+        <div class="page-header">
+            <h1>Register</h1>
+        </div>
+
+        <partial name="_ValidationSummary" />
+
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-md-offset-2">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Register</h3>
+                    </div>
+                    <div class="panel-body">
+                        <form asp-route="Register">
+                            <fieldset>
+                                <input type="hidden" asp-for="ReturnUrl" />
+
+                                <div class="form-group">
+                                    <label asp-for="UserName"></label>
+                                    <div class="input-container">
+                                        <span id="userNamePartial" class="input-partial"></span>
+                                        <i id="userNameButton" class="material-icons input-icon">autorenew</i>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label asp-for="Password"></label>
+                                    <div class="input-container">
+                                        <span id="passwordPartial" class="input-partial"></span>
+                                        <i id="passwordButton" class="material-icons input-icon">autorenew</i>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Colors</label>
+                                    <div class="input-container">
+                                        <span id="colorsPartial" class="input-partial"></span>
+                                        <i id="colorsButton" class="material-icons input-icon">autorenew</i>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <p>Remember this Username and Password. It cannot be changed afterwards</p>
+                                </div>
+
+                                <input class="btn btn-primary" type="button" id="warningButton" value="Submit"/>
+
+                                <div class="modal fade" id="warningModal" tabindex="-1" role="dialog" aria-labelledby="warningModalTitle" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button class="close" data-dismiss="modal">&times;</button>
+                                                    <h4>Warning!</h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div id="successMessage">
+                                                        <p>
+                                                            Remember your Username: <strong id="displayUserName">@Model.UserName</strong>
+                                                            and Password: <strong id="displayPassword">@Model.Password</strong>
+                                                            because they <strong>can not</strong> be changed afterwards
+                                                        </p>
+                                                        <p>This is the last time you see your password in this application</p>
+                                                    </div>
+                                                    <div id="errorMessage">
+                                                        <p>
+                                                            There was a problem generating your UserName. Please try again later.
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                                    <button id="registerButton" class="btn btn-primary" name="button" value="register">Register</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+@section Scripts{
+    <script type="text/javascript">
+        $(document).ready(() => {
+            const warningButton = $("#warningButton");
+            warningButton.hide();
+            const userNamePartial = $("#userNamePartial");
+            const passwordPartial = $("#passwordPartial");
+            const colorsPartial = $("#colorsPartial");
+            const displayUserName = $("#displayUserName");
+            const displayPassword = $("#displayPassword");
+            const registerButton = $("#registerButton");
+            const successMessage = $("#successMessage");
+            const errorMessage = $("#errorMessage");
+            const warningModal = $("#warningModal");
+
+
+            function UpdateDisplayText() {
+                const username = $("#usernameInput").val();
+                if (!username) {
+                    ShowWarningError();
+                } else {
+                    ShowWarningSuccess();
+                }
+                const password = $("#passwordInput").val();
+                displayUserName.html(username);
+                displayPassword.html(password);
+            }
+
+            function RenderSynchronousElements() {
+                passwordPartial.load("@Url.Action("Password", "Account")");
+                colorsPartial.load("@Url.Action("Colors", "Account")", SetDisplayColors);
+                warningButton.show();
+            }
+
+            function SetDisplayColors() {
+                const color1 = $("#displayColor1").val();
+                const color2 = $("#displayColor2").val();
+                $("#color1").css("background-color", color1);
+                $("#color2").css("background-color", color2);
+            }
+
+            function ShowWarningError() {
+                registerButton.hide();
+                successMessage.hide();
+                errorMessage.show();
+            }
+
+            function ShowWarningSuccess() {
+                registerButton.show();
+                successMessage.show();
+                errorMessage.hide();
+            }
+
+            userNamePartial.load("@Url.Action("UserName", "Account")", RenderSynchronousElements);
+
+            $("#userNameButton").on("click", () => {
+                userNamePartial.load("@Url.Action("UserName", "Account")");
+            });
+            $("#passwordButton").on("click",() => {
+                passwordPartial.load("@Url.Action("Password", "Account")");
+            });
+            $("#colorsButton").on("click",() => {
+                colorsPartial.load("@Url.Action("Colors", "Account")", SetDisplayColors);
+            });
+
+            warningButton.on("click", () => {
+                UpdateDisplayText();
+                warningModal.modal("show");
+            });
+        });
+    </script>
+}

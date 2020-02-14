@@ -1,0 +1,46 @@
+<div *ngIf="room">
+  <div class="row">
+    <div class="col-md-2">
+      <div class="container">
+        <a href="/" class="btn btn-primary mb-2">Back</a>
+      </div>
+    </div>
+    <div class="col-md-8">
+      <div class="container">
+        <h2 class="text-center">{{ room.name }}</h2>
+        <p class="text-center">{{ room.numberOfUsers }}/{{ room.capacity }}</p>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-1"></div>
+      <div class="col-md-10">
+        <div id="output-window">
+          <ul id="output" class="list-group list-group-flush" *ngFor="let msg of messages">
+            <chat-message [user]="msg.user" [message]="msg.message"></chat-message>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-1"></div>
+    </div>
+    <div class="row">
+      <div class="col-md-1"></div>
+      <div class="col-md-10">
+        <div class="container input-container">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <div class="input-group-text" id="username">{{ user.name }}</div>
+            </div>
+            <textarea [(ngModel)]="message" id="message" class="form-control input-md" rows="3" maxlength="120" minlength="1" placeholder="type your message here"></textarea>
+            <div class="input-group-append">
+              <button id="send" class="btn-warning btn-md" (click)="send()">Send</button>
+            </div>
+            <div id="word-counter">{{ message.length }}/120</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-1"></div>
+    </div>
+  </div>
+</div>

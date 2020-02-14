@@ -1,0 +1,7 @@
+.user-chat-name {
+  padding: 3px 6px;
+  border-radius: 35%;
+}
+.chat-line {
+  word-wrap: break-word;
+}

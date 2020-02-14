@@ -1,0 +1,9 @@
+﻿@model IdServer.Controllers.UI.RegisterViewModel
+@using IdServer.Utilities
+@{
+    string userName = (string)ViewData["UserName"];
+    string displayUserName = NameGenerator.FilterForView(userName);
+}
+
+<input type="hidden" asp-for="UserName" value="@userName"/>
+<input id="usernameInput" class="input-field" placeholder="UserName" value="@displayUserName" readonly>

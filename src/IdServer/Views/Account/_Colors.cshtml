@@ -1,0 +1,22 @@
+﻿@model IdServer.Controllers.UI.RegisterViewModel
+@using IdServer.Utilities
+@using IdServer.Models
+@{
+    Colors colors = (Colors)ViewData["Colors"];
+    string color1 = colors.first;
+    string color2 = colors.second;
+    string displayColor1 = ColorGenerator.DeconstructColorCode(color1);
+    string displayColor2 = ColorGenerator.DeconstructColorCode(color2);
+}
+
+<input type="hidden" asp-for="Color1" value="@color1" />
+<input type="hidden" asp-for="Color2" value="@color2" />
+<input id="displayColor1" type="hidden" value="@displayColor1" />
+<input id="displayColor2" type="hidden" value="@displayColor2" />
+<div id="color-container" class="input-field">
+    <div id="color-combination">
+        <div id="color1">
+            <div id="color2"></div>
+        </div>
+    </div>
+</div>

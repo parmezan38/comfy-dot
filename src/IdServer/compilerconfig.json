@@ -1,0 +1,18 @@
+﻿[
+  {
+    "outputFile": "wwwroot/css/additional.css",
+    "inputFile": "wwwroot/css/additional.less"
+  },
+  {
+    "outputFile": "wwwroot/css/site.css",
+    "inputFile": "wwwroot/css/site.less"
+  },
+  {
+    "outputFile": "wwwroot/css/new.css",
+    "inputFile": "wwwroot/css/new.less"
+  },
+  {
+    "outputFile": "wwwroot/css/main.css",
+    "inputFile": "wwwroot/css/main.less"
+  }
+]

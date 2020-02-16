@@ -1,0 +1,64 @@
+.room {
+  display: flex;
+  height: 3rem;
+  width: 60%;
+  margin: auto;
+  padding: 0 0.1rem;
+  border-radius: 18px;
+  font-size: 1rem;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 10;
+}
+
+.room-info {
+  flex-grow: 2;
+  margin-left: 0.5rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.room-button {
+  font-size: 1.2rem;
+  flex-grow: 1;
+  min-width: 1rem;
+  margin: auto !important;
+  border-radius: 1rem;
+}
+
+.empty {
+  width: 2rem;
+}
+
+.room-button.delete {
+  width: 2rem;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  color: #0B305B;
+  background-color: #CFE0BE;
+  border: 1px solid #0B305B;
+}
+
+.room-button.join {
+  color: #0B305B;
+  background-color: #E18248;
+  border: 1px solid transparent !important;
+}
+
+.text {
+  font-weight: 600;
+}
+
+.users {
+  margin-left: 1rem;
+  font-weight: 300;
+}
+
+.users .icon {
+  padding-bottom: 0.2rem;
+  color: #fff;
+  font-size: 1.2rem;
+  vertical-align: middle;
+}

@@ -2,6 +2,18 @@ body {
   margin: 0;
 }
 
+.title {
+  margin: 0 auto;
+  text-align: center;
+  font-size: 1.8rem;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #43DCF7 !important;
+  border: 1px solid transparent !important;
+}
+
 a {
   color: #0366d6;
 }

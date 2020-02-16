@@ -1,0 +1,6 @@
+.new-room-button {
+  display: table;
+  margin: 2rem auto 0 auto;
+  border-radius: 50%;
+  font-size: 1.2rem;
+}

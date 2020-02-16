@@ -4,14 +4,17 @@
   border-radius: 5px;
   position: relative;
 }
+
 #color-combination div{
   border-radius: 38%;
   position: absolute;
 }
+
 #color1 {
   width: 3.5em;
   height: 3.5em;
 }
+
 #color2 {
   margin: auto;
   top: 0;
@@ -21,6 +24,7 @@
   width: 2em;
   height: 2em;
 }
+
 #word-counter {
   position: absolute;
   font-size: 0.8em;
@@ -33,6 +37,7 @@
   height: 2em;
   z-index: 100;
 }
+
 #output-window {
   background-color: rgb(255, 255, 255);
   border: solid 1px;
@@ -44,33 +49,50 @@
   height: 460px;
   overflow-y: scroll;
 }
+
 #message {
   resize: none;
 }
+
 #send {
   border: 0;
   border-radius: 0 4px 4px 0;
 }
+
 .top-container {
   margin-bottom: 5px;
 }
+
 .mid {
   width: 50%;
   margin: auto;  
 }
+
 .user-chat-name {
   padding: 3px 6px;
   border-radius: 35%;
 }
+
 .text-show-field {
   width: 10em;
 }
+
 .input-container {
   margin: 0%;
 }
+
+.input-group .div {
+  border-radius: 50% !important;
+}
+
 .chat-line {
   word-wrap: break-word;
 }
+
 .empty-mid-row {
   height: 10px;
+}
+
+.back-button {
+  border-radius: 50%;
 }

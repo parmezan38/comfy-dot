@@ -1,5 +1,8 @@
 body {
   overflow-x: hidden;
+  color: #0B305B !important;
+  background-color: #CFE0BE;
+
 }
 
 .router-container {

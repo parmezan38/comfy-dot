@@ -24,7 +24,7 @@ export class NewRoomComponent {
   submit() {
     if (!this.user) return;
     const room: IRoomRegister = {
-      name: this.user.name,
+      name: this.name,
       capacity: this.capacity,
       userId: this.user.id
     }

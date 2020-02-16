@@ -1,10 +1,19 @@
-<div>
-  <span class="room-name">{{ room.name }}</span>
-  <span class="room-name">   {{ room.numberOfUsers }}/{{ room.capacity }}</span>
-  <span *ngIf="room.owned" >
-    <button class="room-delete-button" (click)="delete()">Delete</button>
-  </span>
+<div class="room">
+  <div *ngIf="room.owned; else elseBlock">
+    <button class="room-button delete mdi mdi-delete" (click)="delete()"></button>
+  </div>
+  <ng-template #elseBlock>
+    <div class="empty"></div>
+  </ng-template>
+  <div v-else class="button"></div>
+  <div class="room-info">
+    <span class="text">{{ room.name }}</span>
+    <span class="users">
+      <span class="mdi mdi-account-multiple"></span>
+      {{ room.numberOfUsers }}/{{ room.capacity }}
+    </span>
+  </div>
   <span *ngIf="room.numberOfUsers < room.capacity" >
-    <button class="room-delete-button" (click)="join()">Join</button>
+    <button class="room-button join mdi mdi-account-arrow-right" (click)="join()"></button>
   </span>
 </div>

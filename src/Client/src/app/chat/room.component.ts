@@ -8,6 +8,7 @@ import { ApiService } from '../shared/api.service';
 @Component({
   selector: 'room',
   templateUrl: './room.component.html',
+  styleUrls: ['./room.component.css']
 })
 export class RoomComponent {
   @Input() room: IRoom;

@@ -1,7 +1,7 @@
 import { UserManager, User } from 'oidc-client';
 import { Injectable, EventEmitter } from '@angular/core';
 import { Observable, from } from 'rxjs';
-import { IUser } from './interfaces';
+import { IUser } from '../shared/interfaces';
 
 const config: any = {
   // TODO: Change to https when changed on server

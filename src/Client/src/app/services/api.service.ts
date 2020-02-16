@@ -4,7 +4,7 @@ import { Observable, } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 
 import { AuthService } from './auth.service';
-import { IRegisterResponse, IRoomRegister } from './interfaces';
+import { IRegisterResponse, IRoomRegister } from '../shared/interfaces';
 
 // TODO: Change to https when changed on Api
 const PROTOCOL = 'http';

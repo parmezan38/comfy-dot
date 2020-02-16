@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { AuthService } from '../shared/auth.service';
-import { ApiService } from '../shared/api.service';
-import { SignalRService } from '../shared/signalR.service';
+import { AuthService } from '../services/auth.service';
+import { ApiService } from '../services/api.service';
+import { SignalRService } from '../services/signalR.service';
 
 
 @Component({

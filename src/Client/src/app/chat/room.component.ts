@@ -3,7 +3,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { IRoom } from '../shared/interfaces';
-import { ApiService } from '../shared/api.service';
+import { ApiService } from '../services/api.service';
 
 @Component({
   selector: 'room',

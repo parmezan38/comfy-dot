@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { FormatName } from '../utilities/filters';
-import { AuthService } from '../shared/auth.service';
+import { FormatName } from '../shared/filters';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'navbar',

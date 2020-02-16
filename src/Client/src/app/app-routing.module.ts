@@ -4,9 +4,7 @@ import { LoginComponent } from './login/login.component';
 import { ChatComponent } from './chat/chat.component';
 import { CallbackComponent } from './callback/callback.component';
 import { LobbyComponent } from './chat/lobby.component';
-import { RoomComponent } from './chat/room.component';
-import { NewRoomComponent } from './chat/new-room.component';
-import { AuthGuard } from './shared/auth.guard';
+import { AuthGuard } from './services/auth.guard';
 
 const routes: Routes = [
   {

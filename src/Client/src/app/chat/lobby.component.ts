@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 import { Store } from '@ngxs/store';
 
 import { IRoom, IUser } from '../shared/interfaces';
-import { AuthService } from '../shared/auth.service';
-import { SignalRService } from '../shared/signalR.service';
-import { ApiService } from '../shared/api.service';
+import { AuthService } from '../services/auth.service';
+import { SignalRService } from '../services/signalR.service';
+import { ApiService } from '../services/api.service';
 import { Observable } from 'rxjs';
 
 import { AddRooms } from '../state/lobby.actions';

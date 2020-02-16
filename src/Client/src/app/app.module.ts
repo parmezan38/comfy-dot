@@ -14,10 +14,10 @@ import { LobbyComponent } from './chat/lobby.component';
 import { RoomComponent } from './chat/room.component';
 import { NewRoomComponent } from './chat/new-room.component';
 
-import { AuthService } from './shared/auth.service';
-import { ApiService } from './shared/api.service';
-import { SignalRService } from './shared/signalR.service';
-import { AuthGuard } from './shared/auth.guard';
+import { AuthService } from './services/auth.service';
+import { ApiService } from './services/api.service';
+import { SignalRService } from './services/signalR.service';
+import { AuthGuard } from './services/auth.guard';
 
 import { NgxsModule } from '@ngxs/store';
 import { NgxsStoragePluginModule } from '@ngxs/storage-plugin';

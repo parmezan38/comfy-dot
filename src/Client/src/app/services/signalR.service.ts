@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import * as signalR from '@microsoft/signalr';
 
 import { UpdateRoom } from '../state/lobby.actions';
-import { IRoom } from './interfaces';
+import { IRoom } from '../shared/interfaces';
 
 @Injectable()
 export class SignalRService {

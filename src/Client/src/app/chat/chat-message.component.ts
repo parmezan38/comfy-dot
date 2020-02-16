@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { IUser } from '../shared/interfaces';
-import { ColorFilter, FormatName } from '../utilities/filters';
+import { ColorFilter, FormatName } from '../shared/filters';
 
 
 @Component({

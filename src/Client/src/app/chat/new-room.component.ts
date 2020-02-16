@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 
 import { IUser, IRoomRegister } from '../shared/interfaces';
-import { ApiService } from '../shared/api.service';
-import { AuthService } from '../shared/auth.service';
+import { ApiService } from '../services/api.service';
+import { AuthService } from '../services/auth.service';
 
 
 @Component({

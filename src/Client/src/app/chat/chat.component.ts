@@ -2,9 +2,9 @@ import { Component, Input } from '@angular/core';
 import { Store } from '@ngxs/store';
 import { ActivatedRoute } from '@angular/router';
 
-import { SignalRService } from '../shared/signalR.service';
+import { SignalRService } from '../services/signalR.service';
 import { IChatMessage, IUser, IRoom } from '../shared/interfaces';
-import { AuthService } from '../shared/auth.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'chat',

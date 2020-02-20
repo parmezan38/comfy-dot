@@ -4,7 +4,6 @@ using IdServer.Data;
 using IdServer.Hubs;
 using IdServer.Models;
 using IdServer.Services;
-using IdServer.Utilities;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -71,6 +70,9 @@ namespace IdServer
             });
 
             services.AddScoped<IRoomController, RoomController>();
+            services.AddSingleton<INameGenerator, NameGenerator>();
+            services.AddSingleton<IPasswordGenerator, PasswordGenerator>();
+            services.AddSingleton<IColorGenerator, ColorGenerator>();
 
             services.AddDbContextPool<ApplicationDbContext>(options =>
             {

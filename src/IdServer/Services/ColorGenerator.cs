@@ -1,11 +1,11 @@
 ﻿using IdServer.Models;
 using System;
 
-namespace IdServer.Utilities
+namespace IdServer.Services
 {
-    public class ColorGenerator
+    public class ColorGenerator : IColorGenerator
     {
-        private static Random random = new Random();
+        private Random random = new Random();
         private struct MinMax
         {
             public int min;
@@ -20,7 +20,7 @@ namespace IdServer.Utilities
         static MinMax SAT = new MinMax(35, 90);
         static MinMax LIG = new MinMax(45, 80);
 
-        public static Colors GenerateColors()
+        public Colors GenerateColors()
         {
             int primaryHue = GenerateValue(HUE);
             int secondaryHue = (primaryHue + 180 + random.Next(10, 20)) % 360;
@@ -32,7 +32,7 @@ namespace IdServer.Utilities
             ); ;
         }
 
-        public static string DeconstructColorCode(string str)
+        public string DeconstructColorCode(string str)
         {
             string[] firstSplit = str.Split('s');
             string[] secondSplit = firstSplit[1].Split('l');
@@ -43,6 +43,6 @@ namespace IdServer.Utilities
             return hsl;
         }
 
-        private static int GenerateValue(MinMax val) => random.Next(val.min, val.max);
+        private int GenerateValue(MinMax val) => random.Next(val.min, val.max);
     }
 }

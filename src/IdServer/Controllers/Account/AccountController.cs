@@ -1,13 +1,11 @@
 ﻿using IdentityModel;
 using IdentityServer4.Events;
 using IdentityServer4.Extensions;
-using IdentityServer4.Models;
 using IdentityServer4.Services;
 using IdentityServer4.Stores;
 using IdServer.Data;
 using IdServer.Models;
 using IdServer.Controllers.UI;
-using IdServer.Utilities;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -15,8 +13,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Linq;
 using System.Threading.Tasks;
+using IdServer.Services;
 
 namespace IdentityServer4.Controllers.UI
 {
@@ -30,6 +28,9 @@ namespace IdentityServer4.Controllers.UI
         private readonly IIdentityServerInteractionService _interaction;
         private readonly IClientStore _clientStore;
         private readonly IEventService _events;
+        private readonly INameGenerator _nameGenerator;
+        private readonly IColorGenerator _colorGenerator;
+        private readonly IPasswordGenerator _passwordGenerator;
 
         public AccountController(
             ApplicationDbContext db,
@@ -37,7 +38,10 @@ namespace IdentityServer4.Controllers.UI
             SignInManager<User> signInManager,
             IIdentityServerInteractionService interaction,
             IClientStore clientStore,
-            IEventService events)
+            IEventService events,
+            INameGenerator nameGenerator,
+            IColorGenerator colorGenerator,
+            IPasswordGenerator passwordGenerator)
         {
             _db = db;
             _userManager = userManager;
@@ -45,6 +49,9 @@ namespace IdentityServer4.Controllers.UI
             _interaction = interaction;
             _clientStore = clientStore;
             _events = events;
+            _nameGenerator = nameGenerator;
+            _colorGenerator = colorGenerator;
+            _passwordGenerator = passwordGenerator;
         }
 
         [HttpGet]
@@ -62,7 +69,7 @@ namespace IdentityServer4.Controllers.UI
             var context = await _interaction.GetAuthorizationContextAsync(model.ReturnUrl);
 
             string password = model.Password.ToLower();
-            string userName = NameGenerator.FilterForDb(model.UserName);
+            string userName = _nameGenerator.FilterForDb(model.UserName);
 
             if (ModelState.IsValid)
             {
@@ -152,11 +159,11 @@ namespace IdentityServer4.Controllers.UI
 
         public async Task<string> GetNewName(int timeout = 0)
         {
-            if (timeout >= NameGenerator.NumberOfPossibleNames)
+            if (timeout >= _nameGenerator.NumberOfPossibleNames)
             {
                 throw new Exception("Error trying to generate Username. Try again later");
             }
-            string name = NameGenerator.GenerateName();
+            string name = _nameGenerator.GenerateName();
             var exists = await _db.Users.FirstOrDefaultAsync(e => e.UserName == name);
             if (exists != null)
             {
@@ -180,13 +187,13 @@ namespace IdentityServer4.Controllers.UI
 
         public PartialViewResult Password()
         {
-            ViewData["Password"] = PasswordGenerator.GeneratePassword();
+            ViewData["Password"] = _passwordGenerator.GeneratePassword();
             return PartialView("_Password");
         }
 
         public PartialViewResult Colors()
         {
-            ViewData["Colors"] = ColorGenerator.GenerateColors();
+            ViewData["Colors"] = _colorGenerator.GenerateColors();
             return PartialView("_Colors");
         }
 

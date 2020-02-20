@@ -23,3 +23,9 @@ export class RemoveCurrentRoom {
 
   constructor() {}
 }
+
+export class ResetRooms {
+  static readonly type = '[LOBBY] Reset';
+
+  constructor() {}
+}

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { State, Action, StateContext, Selector } from '@ngxs/store';
 import { IRoom } from '../shared/interfaces';
-import { AddRooms, UpdateRoom, AddCurrentRoom, RemoveCurrentRoom } from './lobby.actions';
+import { AddRooms, UpdateRoom, AddCurrentRoom, RemoveCurrentRoom, ResetRooms } from './lobby.actions';
 
 export class LobbyStateModel {
   rooms: IRoom[];
@@ -55,5 +55,10 @@ export class LobbyState {
   @Action(RemoveCurrentRoom)
   removeCurrentRoom({ patchState }: StateContext<LobbyStateModel>) {
     patchState({ currentRoom: null });
+  }
+
+  @Action(ResetRooms)
+  resetRooms({ patchState }: StateContext<LobbyStateModel>, { }: ResetRooms) {
+    patchState({ rooms: [] });
   }
 }

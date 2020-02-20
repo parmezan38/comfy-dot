@@ -5,10 +5,10 @@ import { map } from "rxjs/operators";
 
 @Injectable()
 export class AuthGuard {
-  constructor(private router: Router, private authService: AuthService) { }
+  constructor(private router: Router, private auth: AuthService) { }
 
   canActivate(): any {
-    return this.authService.isLoggedIn().pipe(
+    return this.auth.isLoggedIn().pipe(
       map(user => {
         if(user) return true;
         this.router.navigate(['/login']);

@@ -16,7 +16,7 @@ export class ApiService {
 
   private baseUrl: string = `${PROTOCOL}://${location.hostname}:${PORT}/${API}`;
 
-  constructor(private http: HttpClient, private authService: AuthService) { }
+  constructor(private http: HttpClient, private auth: AuthService) { }
 
   public listRooms(): Observable<string> {
     const headers = this.getHeaders();
@@ -42,7 +42,7 @@ export class ApiService {
   private getHeaders(): any {
     return new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${this.authService.getAccessToken()}`,
+      'Authorization': `Bearer ${this.auth.getAccessToken()}`,
       'X-Requested-With': 'XMLHttpRequest'
     });
   }

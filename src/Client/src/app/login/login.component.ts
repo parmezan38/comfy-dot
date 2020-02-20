@@ -13,15 +13,15 @@ import { ResetRooms } from '../state/lobby.actions';
 export class LoginComponent {
   public message: string;
 
-  constructor(private authService: AuthService, private store: Store) {
+  constructor(private auth: AuthService, private store: Store) {
     this.store.dispatch(new ResetRooms());
   }
 
   login() {
-    this.authService.login();
+    this.auth.login();
   }
 
   logout() {
-    this.authService.logout();
+    this.auth.logout();
   }
 }

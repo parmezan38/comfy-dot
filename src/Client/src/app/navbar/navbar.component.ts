@@ -11,16 +11,16 @@ import { AuthService } from '../services/auth.service';
 export class NavbarComponent {
   public userName: string;
 
-  constructor(private authService: AuthService) { }
+  constructor(private auth: AuthService) { }
 
   ngOnInit() {
-    this.authService.userChangeEvent
+    this.auth.userChangeEvent
       .subscribe(user => {
         this.userName = FormatName(user.profile.name);
       });
   }
 
   public logout() {
-    this.authService.logout();
+    this.auth.logout();
   }
 }

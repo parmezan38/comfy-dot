@@ -1,10 +1,4 @@
-﻿using IdServer.Utilities.Data;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text.Json;
-
-namespace IdServer.Services
+﻿namespace IdServer.Services
 {
     public interface INameGenerator
     {

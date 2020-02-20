@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace IdServer.Controllers.UI
+﻿namespace IdServer.Controllers.UI
 {
     public class LoginViewModel
     {

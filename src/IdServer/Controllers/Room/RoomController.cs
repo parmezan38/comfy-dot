@@ -53,13 +53,16 @@ namespace IdServer.Controllers
             }
         }
 
-        public async Task Delete(int id)
+        public async Task Delete(int id, string userId)
         {
             try
             {
                 var room = await _db.Rooms.FirstOrDefaultAsync(it => it.Id == id);
-                _db.Remove(room);
-                await _db.SaveChangesAsync();
+                if (room.UserId.Equals(userId))
+                {
+                    _db.Remove(room);
+                    await _db.SaveChangesAsync();
+                }
             }
             catch (Exception e)
             {

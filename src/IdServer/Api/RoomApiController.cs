@@ -58,7 +58,8 @@ namespace IdServer.Controllers
         {
             try
             {
-                await _roomController.Delete(id);
+                string userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+                await _roomController.Delete(id, userId);
                 // TODO: Move to separate chat hub manager
                 await _chatHub.Clients.All.SendAsync("RefreshRooms");
                 return new JsonResult("Room deleted.");

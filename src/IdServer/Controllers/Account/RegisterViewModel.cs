@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using IdServer.Data;
-using IdServer.Utilities;
-using Microsoft.EntityFrameworkCore;
-
-namespace IdServer.Controllers.UI
+﻿namespace IdServer.Controllers.UI
 {
     public class RegisterViewModel
     {

@@ -176,7 +176,13 @@ namespace IdentityServer4.Controllers.UI
         {
             try
             {
-                ViewData["UserName"] = await GetNewName();
+                string userName = await GetNewName();
+                UserNameViewModel model = new UserNameViewModel()
+                {
+                    UserName = userName,
+                    DisplayUserName = _nameGenerator.FilterForView(userName)
+                };
+                ViewData["UserNameViewModel"] = model;
                 return PartialView("_UserName");
             }
             catch (Exception exception)
@@ -193,7 +199,15 @@ namespace IdentityServer4.Controllers.UI
 
         public PartialViewResult Colors()
         {
-            ViewData["Colors"] = _colorGenerator.GenerateColors();
+            Colors colors = _colorGenerator.GenerateColors();
+            ColorsViewModel model = new ColorsViewModel()
+            {
+                Color1 = colors.first,
+                Color2 = colors.second,
+                DisplayColor1 = _colorGenerator.DeconstructColorCode(colors.first),
+                DisplayColor2 = _colorGenerator.DeconstructColorCode(colors.second)
+            };
+            ViewData["ColorsViewModel"] = model;
             return PartialView("_Colors");
         }
 

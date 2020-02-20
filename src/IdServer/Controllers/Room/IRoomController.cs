@@ -8,7 +8,6 @@ namespace IdServer.Controllers
     {
         Task<IEnumerable<RoomDisplayable>> Get(string id);
         Task Create(Room room);
-        Task Delete(int id);
-
+        Task Delete(int id, string userId);
     }
 }

@@ -1,11 +1,12 @@
 ﻿@using IdentityServer4.Extensions
-@using IdServer.Utilities
+@using IdServer.Services
 @{
     string name = null;
     if (!true.Equals(ViewData["signed-out"]))
     {
         name = Context.User?.GetDisplayName();
-        name = NameGenerator.FilterForView(name);
+        // TODO: Get from NameGenerator service
+        // name = NameGenerator.FilterForView(name);
     }
 }
 <!DOCTYPE html>

@@ -2,13 +2,13 @@ import { Component } from '@angular/core';
 import { Store } from '@ngxs/store';
 
 import { AuthService } from '../services/auth.service';
-import { ApiService } from '../services/api.service';
 import { ResetRooms } from '../state/lobby.actions';
 
 
 @Component({
   selector: 'login',
   templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
   public message: string;
@@ -19,9 +19,5 @@ export class LoginComponent {
 
   login() {
     this.auth.login();
-  }
-
-  logout() {
-    this.auth.logout();
   }
 }

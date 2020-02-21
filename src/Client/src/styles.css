@@ -1,9 +1,14 @@
+html, body {
+  height: 100%;
+}
+
 body {
   margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif; 
 }
 
 .title {
-  margin: 0 auto;
+  margin: 1rem auto 0 auto;
   text-align: center;
   font-size: 1.8rem;
 }
@@ -14,6 +19,54 @@ body {
   border: 1px solid transparent !important;
 }
 
+.btn-secondary {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  color: #0B305B;
+  background-color: #CFE0BE;
+  border: 1px solid #0B305B;
+}
+
+.btn-secondary:hover {
+  color: #CFE0BE;
+  background-color: #0B305B;
+}
+
+.close {
+  color: #0B305B !important;
+  opacity: 1 !important;
+  text-shadow: 0 0 0 #fff;
+}
+
+.input-group-text {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  background-color: #CFE0BE;
+  border: 1px solid #0B305B;
+  color: #0b305b;
+}
+
+.input-group-append {
+  color: #0B305B;
+  background-color: #E18248;
+  border: 1px solid transparent !important;
+}
+
+.form-control {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  border: 1px solid #0B305B;
+  color: #0b305b;
+}
+
+.modal-content {
+  background-color: #CFE0BE;
+  border: 1px solid transparent !important;
+}
+
 a {
   color: #0366d6;
 }
@@ -21,11 +74,3 @@ a {
 code {
   color: #e01a76;
 }
-
-.btn-primary {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
-}
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

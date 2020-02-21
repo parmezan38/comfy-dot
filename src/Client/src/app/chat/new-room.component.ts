@@ -8,6 +8,7 @@ import { AuthService } from '../services/auth.service';
 @Component({
   selector: 'new-room',
   templateUrl: './new-room.component.html',
+  styleUrls: ['./new-room.component.html']
 })
 export class NewRoomComponent {
   user: IUser;

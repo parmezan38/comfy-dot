@@ -29,13 +29,13 @@
       <div class="col-md-10">
         <div class="container input-container">
           <div class="input-group">
-            <div class="input-group-prepend">
-              <div class="input-group-text" id="username">{{ user.name }}</div>
-            </div>
             <textarea [(ngModel)]="message" id="message" class="form-control input-md" rows="3" maxlength="120" minlength="1" placeholder="type your message here"></textarea>
-            <div class="input-group-append">
-              <button id="send" class="btn-warning btn-md" (click)="send()">Send</button>
+            <div *ngIf="message; else elseBlock;">
+              <button id="send" class="send-button mdi mdi-send" (click)="send()"></button>
             </div>
+            <ng-template #elseBlock>
+              <button class="btn empty-button"></button>
+            </ng-template>
             <div id="word-counter">{{ message.length }}/120</div>
           </div>
         </div>

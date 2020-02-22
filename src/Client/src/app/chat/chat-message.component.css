@@ -1,7 +1,13 @@
+.chat-message {
+  margin: 0.4rem 0 0 0.4rem;
+  list-style-type: none;
+}
+
 .user-chat-name {
   padding: 3px 6px;
   border-radius: 35%;
 }
+
 .chat-line {
   word-wrap: break-word;
 }

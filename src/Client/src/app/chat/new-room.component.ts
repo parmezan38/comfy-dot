@@ -45,11 +45,11 @@ export class NewRoomComponent {
   preventInput(event){
     const value = this.capacity;
     if (value > 99){
-      event.preventDefault()
+      event.preventDefault();
       this.capacity = parseInt(value.toString().substring(0,2));
     }
     if (value < 1){
-      event.preventDefault()
+      event.preventDefault();
       this.capacity = 0;
     }
   }

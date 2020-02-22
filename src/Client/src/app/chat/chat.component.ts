@@ -46,6 +46,7 @@ export class ChatComponent {
   }
 
   public send() {
+    if (!this.room || !this.user || !this.message) return;
     const msg: IChatMessage = {
       roomId: this.room.id,
       user: this.user,
@@ -56,9 +57,9 @@ export class ChatComponent {
   }
 
   public keyPress(event) {
-    console.log(event);
     if (event.key === 'Enter' && event.shiftKey === false) {
       this.send();
+      event.preventDefault();
     }
   }
 }

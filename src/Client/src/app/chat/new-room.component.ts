@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { IUser, IRoomRegister, IResponseMessage } from '../shared/interfaces';
 import { ApiService } from '../services/api.service';
@@ -10,7 +10,7 @@ import { SnackbarService } from '../services/snackbar.service';
   templateUrl: './new-room.component.html',
   styleUrls: ['./new-room.component.html']
 })
-export class NewRoomComponent {
+export class NewRoomComponent implements OnInit {
   user: IUser;
   public name: string;
   public capacity: number;
@@ -21,7 +21,7 @@ export class NewRoomComponent {
     this.auth.getUserProfile().then(user => this.user = user);
   }
 
-  submit() {
+  public submit() {
     if (!this.name || !this.user) return;
     const room: IRoomRegister = {
       name: this.name,
@@ -32,7 +32,7 @@ export class NewRoomComponent {
       .subscribe((res: IResponseMessage) => this.snackbar.show(res));
   }
 
-  capacityChanged(val) {
+  public capacityChanged(val) {
     if (val > 99) {
       val = 99;
     }
@@ -42,13 +42,13 @@ export class NewRoomComponent {
     this.capacity = val;
   }
 
-  preventInput(event){
+  public preventInput(event) {
     const value = this.capacity;
-    if (value > 99){
+    if (value > 99) {
       event.preventDefault();
-      this.capacity = parseInt(value.toString().substring(0,2));
+      this.capacity = parseInt(value.toString().substring(0, 2));
     }
-    if (value < 1){
+    if (value < 1) {
       event.preventDefault();
       this.capacity = 0;
     }

@@ -11,9 +11,7 @@ import { AuthService } from '../services/auth.service';
 export class NavbarComponent {
   public userName: string;
 
-  constructor(private auth: AuthService) { }
-
-  ngOnInit() {
+  constructor(private auth: AuthService) {
     this.auth.userChangeEvent
       .subscribe(user => {
         this.userName = FormatName(user.profile.name);

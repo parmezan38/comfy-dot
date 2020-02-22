@@ -21,7 +21,6 @@ import { SignalRService } from './services/signalR.service';
 import { SnackbarService } from './services/snackbar.service';
 import { AuthGuard } from './services/auth.guard';
 
-
 import { NgxsModule } from '@ngxs/store';
 import { NgxsStoragePluginModule } from '@ngxs/storage-plugin';
 import { LobbyState } from './state/lobby.state';
@@ -44,7 +43,7 @@ import { LobbyState } from './state/lobby.state';
     HttpClientModule,
     FormsModule,
     AppRoutingModule,
-    NgxsModule.forRoot([ LobbyState ]),
+    NgxsModule.forRoot([LobbyState]),
     NgxsStoragePluginModule.forRoot()
   ],
   providers: [

@@ -9,7 +9,7 @@ import { IRoom } from '../shared/interfaces';
 export class SignalRService {
   public connection: signalR.HubConnection
 
-  constructor(private store: Store) {}
+  constructor(private store: Store) { }
 
   public startConnection = async (userId: string, room?: IRoom) => {
     this.connection = new signalR.HubConnectionBuilder()
@@ -20,12 +20,12 @@ export class SignalRService {
     this.connection.on('UpdateRoom', (room: IRoom) => {
       this.store.dispatch(new UpdateRoom(room));
     });
-    
+
     await this.connection
       .start()
-      .then(() => {console.log('Connection started')})
+      .then(() => { console.log('Connection started') })
       .catch(err => console.log('Error while starting connection: ' + err))
-    
+
     if (room) {
       this.connection.invoke('Join', { userId, room });
     } else {

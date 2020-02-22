@@ -17,7 +17,7 @@ export class LoginComponent {
     this.store.dispatch(new ResetRooms());
   }
 
-  login() {
+  public login() {
     this.auth.login();
   }
 }

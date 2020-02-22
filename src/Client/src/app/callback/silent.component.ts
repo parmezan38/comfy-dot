@@ -9,7 +9,7 @@ import { AuthService } from '../services/auth.service';
 })
 
 export class SilentComponent {
-  constructor(private auth: AuthService) { }  
+  constructor(private auth: AuthService) { }
   ngOnInit() {
     new UserManager({ response_mode: "query" })
       .signinSilentCallback()

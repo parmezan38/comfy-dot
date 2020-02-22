@@ -12,7 +12,7 @@ import { SnackbarService } from '../services/snackbar.service';
 })
 export class RoomComponent {
   @Input() room: IRoom;
-  
+
   constructor(private router: Router, private api: ApiService, private snackbar: SnackbarService) { }
 
   public join() {

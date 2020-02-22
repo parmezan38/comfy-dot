@@ -10,7 +10,7 @@ export class AuthGuard {
   canActivate(): any {
     return this.auth.isLoggedIn().pipe(
       map(user => {
-        if(user) return true;
+        if (user) return true;
         this.router.navigate(['/login']);
         return false;
       }));

@@ -8,7 +8,7 @@ import { UserManager } from 'oidc-client';
 })
 
 export class CallbackComponent {
-  constructor(private router: Router) {}
+  constructor(private router: Router) { }
 
   ngOnInit() {
     new UserManager({ response_mode: "query" })

@@ -16,7 +16,7 @@ export class SnackbarComponent {
     this.snackbarService.observable.subscribe((res: IResponseMessage) => this.show(res));
   }
 
-  show(res: IResponseMessage) {
+  public show(res: IResponseMessage) {
     this.type = res.type;
     this.message = res.message;
     this.isVisible = true;

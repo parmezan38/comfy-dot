@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { IUser } from '../shared/interfaces';
 import { ColorFilter, FormatName } from '../shared/filters';
 
@@ -9,7 +9,7 @@ import { ColorFilter, FormatName } from '../shared/filters';
   styleUrls: ['./chat-message.component.css']
 })
 
-export class ChatMessageComponent {
+export class ChatMessageComponent implements OnInit {
   @Input() user: IUser;
   @Input() message: string;
   style: any;

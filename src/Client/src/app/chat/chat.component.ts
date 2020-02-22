@@ -54,4 +54,11 @@ export class ChatComponent {
     this.message = '';
     this.signalR.connection.invoke('Chat', msg);
   }
+
+  public keyPress(event) {
+    console.log(event);
+    if (event.key === 'Enter' && event.shiftKey === false) {
+      this.send();
+    }
+  }
 }

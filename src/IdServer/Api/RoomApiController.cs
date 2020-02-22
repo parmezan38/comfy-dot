@@ -33,7 +33,7 @@ namespace IdServer.Controllers
             }
             catch
             {
-                return new JsonResult("Something went wrong with fetching the rooms.");
+                return new JsonResult("Error: Something went wrong with fetching the rooms.");
             }
         }
 
@@ -45,11 +45,21 @@ namespace IdServer.Controllers
                 await _roomController.Create(room);
                 // TODO: Move to separate chat hub manager
                 await _chatHub.Clients.All.SendAsync("RefreshRooms");
-                return new JsonResult($"{room.Name} created.");
+                RoomResponse res = new RoomResponse()
+                {
+                    Type = "success",
+                    Message = $"{room.Name} created."
+                };
+                return new JsonResult(res);
             }
             catch
             {
-                return new JsonResult($"Something went wrong with creating {room.Name}.");
+                RoomResponse res = new RoomResponse()
+                {
+                    Type = "error",
+                    Message = $"Error: Something went wrong with creating {room.Name}."
+                };
+                return new JsonResult(res);
             }
         }
 
@@ -62,11 +72,21 @@ namespace IdServer.Controllers
                 await _roomController.Delete(id, userId);
                 // TODO: Move to separate chat hub manager
                 await _chatHub.Clients.All.SendAsync("RefreshRooms");
-                return new JsonResult("Room deleted.");
+                RoomResponse res = new RoomResponse()
+                {
+                    Type = "success",
+                    Message = "Room deleted."
+                };
+                return new JsonResult(res);
             }
             catch
             {
-                return new JsonResult("Something went wrong with deleting the room.");
+                RoomResponse res = new RoomResponse()
+                {
+                    Type = "error",
+                    Message = "Error: Something went wrong with deleting the room."
+                };
+                return new JsonResult(res);
             }
         }
 
@@ -77,11 +97,21 @@ namespace IdServer.Controllers
             {
                 string userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
                 await _chatHub.Groups.AddToGroupAsync(userId, id.ToString());
-                return new JsonResult("Joined a room.");
+                RoomResponse res = new RoomResponse()
+                {
+                    Type = "success",
+                    Message = "Joined a room."
+                };
+                return new JsonResult(res);
             }
             catch
             {
-                return new JsonResult("Something went wrong with joining the room.");
+                RoomResponse res = new RoomResponse()
+                {
+                    Type = "error",
+                    Message = "Something went wrong with joining the room."
+                };
+                return new JsonResult(res);
             }
         }
     }

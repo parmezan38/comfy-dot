@@ -13,13 +13,29 @@
             <div class="input-group-prepend">
               <span class="input-group-text" id="name-description">Room Name</span>
             </div>
-            <input [(ngModel)]="name" type="text" class="form-control" placeholder="Name" aria-label="Name" aria-describedby="name-description">
+            <input
+              [(ngModel)]="name"
+              type="text"
+              class="form-control"
+              placeholder="Name"
+              aria-label="Name"
+              aria-describedby="name-description">
           </div>
           <div class="input-group mb-3">
             <div class="input-group-prepend">
               <span class="input-group-text" id="capacity-description">Capacity</span>
             </div>
-            <input [(ngModel)]="capacity" type="number" class="form-control" placeholder="4" aria-label="Capacity" aria-describedby="capacity-description">
+            <input
+              [(ngModel)]="capacity"
+              (ngModelChange)="capacityChanged($event)"
+              (keyup)="preventInput($event)"
+              min="1"
+              max="99"
+              type="number"
+              class="form-control"
+              placeholder="4"
+              aria-label="Capacity"
+              aria-describedby="capacity-description">
           </div>
         </div>
         <div class="modal-footer">

@@ -29,7 +29,16 @@
       <div class="col-md-10">
         <div class="container input-container">
           <div class="input-group">
-            <textarea [(ngModel)]="message" id="message" class="form-control input-md" rows="3" maxlength="120" minlength="1" placeholder="type your message here"></textarea>
+            <textarea
+              [(ngModel)]="message" 
+              (keypress)="keyPress($event)" 
+              id="message"
+              class="form-control input-md"
+              rows="3"
+              maxlength="120"
+              minlength="1"
+              placeholder="type your message here">
+            </textarea>
             <div *ngIf="message; else elseBlock;">
               <button id="send" class="send-button mdi mdi-send" (click)="send()"></button>
             </div>

@@ -33,7 +33,7 @@ export interface IChatMessage {
   message: string;
 }
 
-export interface IRegisterResponse {
-  succeeded: boolean,
-  errors: any
+export interface IResponseMessage {
+  type: string,
+  message: string
 }

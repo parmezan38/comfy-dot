@@ -6,6 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { NavbarComponent } from './navbar/navbar.component';
+import { SnackbarComponent } from './snackbar/snackbar.component';
 import { LoginComponent } from './login/login.component';
 import { ChatComponent } from './chat/chat.component';
 import { ChatMessageComponent } from './chat/chat-message.component';
@@ -17,7 +18,9 @@ import { NewRoomComponent } from './chat/new-room.component';
 import { AuthService } from './services/auth.service';
 import { ApiService } from './services/api.service';
 import { SignalRService } from './services/signalR.service';
+import { SnackbarService } from './services/snackbar.service';
 import { AuthGuard } from './services/auth.guard';
+
 
 import { NgxsModule } from '@ngxs/store';
 import { NgxsStoragePluginModule } from '@ngxs/storage-plugin';
@@ -27,6 +30,7 @@ import { LobbyState } from './state/lobby.state';
   declarations: [
     AppComponent,
     NavbarComponent,
+    SnackbarComponent,
     LoginComponent,
     ChatComponent,
     ChatMessageComponent,
@@ -49,6 +53,7 @@ import { LobbyState } from './state/lobby.state';
     AuthGuard,
     NgxsModule,
     SignalRService,
+    SnackbarService,
     { provide: 'Window', useValue: window }
   ],
   bootstrap: [AppComponent]

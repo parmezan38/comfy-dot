@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace IdServer.Services
+namespace IdServer.Data.ServicesData
 {
     public class NameData
     {

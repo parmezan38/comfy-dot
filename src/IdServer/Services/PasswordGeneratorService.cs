@@ -1,21 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text.Json;
+﻿using IdServer.Data.ServicesData;
+using System;
 
 namespace IdServer.Services
 {
-    public class PasswordGenerator : IPasswordGenerator
+    public class PasswordGeneratorService : IPasswordGenerator
     {
         private readonly Random getRandom = new Random();
-        private PasswordData data;
-        public PasswordGenerator()
+        private readonly IPasswordDataService _passwordDataService;
+
+        public PasswordGeneratorService(IPasswordDataService passwordDataService)
         {
-            string json = File.ReadAllText("./JSON/PasswordData.json");
-            data = JsonSerializer.Deserialize<PasswordData>(json);
+            _passwordDataService = passwordDataService;
         }
+
         public string GeneratePassword()
         {
+            PasswordData data = _passwordDataService.GetPasswordData();
             string password = "";
             data.Parts.ForEach(part => {
                 double random = getRandom.NextDouble();

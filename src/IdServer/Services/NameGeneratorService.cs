@@ -1,29 +1,29 @@
-﻿using System;
+﻿using IdServer.Data.ServicesData;
+using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Text.Json;
 
 namespace IdServer.Services
 {
-    public class NameGenerator : INameGenerator
+    public class NameGeneratorService : INameGenerator
     {
         public int NumberOfPossibleNames { get; set; }
-        private NameData data;
-        public NameGenerator()
+        private INameDataService _nameDataService;
+
+        public NameGeneratorService(INameDataService nameDataService)
         {
-            string json = File.ReadAllText("./JSON/NameData.json");
-            data = JsonSerializer.Deserialize<NameData>(json);
+            _nameDataService = nameDataService;
             NumberOfPossibleNames = GetNumberOfPossibleResults();
         }
 
         public string GenerateName()
         {
+            NameData data = _nameDataService.GetNameData();
             string name = "";
-            List<string> randomPattern = GetRandomPattern();
+            List<string> randomPattern = GetRandomPattern(data);
             randomPattern.ForEach(currentType => {
-                string namePiece = currentType == "Two" ? GetRandomPart("Two")
-                  : currentType == "Three" ? GetRandomPart("Three")
-                    : currentType == "Mid" ? GetRandomPart("Mid")
+                string namePiece = currentType == "Two" ? GetRandomPart("Two", data)
+                  : currentType == "Three" ? GetRandomPart("Three", data)
+                    : currentType == "Mid" ? GetRandomPart("Mid", data)
                       : "_";
                 name += namePiece;
             });
@@ -67,6 +67,7 @@ namespace IdServer.Services
 
         public int GetNumberOfPossibleResults()
         {
+            NameData data = _nameDataService.GetNameData();
             int result = 0;
             data.Patterns.ForEach(pattern => {
                 int patternReturnNum = 1;
@@ -85,13 +86,13 @@ namespace IdServer.Services
             return str.ToLower();
         }
 
-        private List<string> GetRandomPattern()
+        private List<string> GetRandomPattern(NameData data)
         {
             int index = new Random().Next(0, data.Patterns.Count - 1);
             return data.Patterns[index];
         }
 
-        private string GetRandomPart(string key)
+        private string GetRandomPart(string key, NameData data)
         {
             List<string> part = data.Parts[key];
             int index = new Random().Next(0, part.Count - 1);

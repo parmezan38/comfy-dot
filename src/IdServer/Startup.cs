@@ -70,8 +70,10 @@ namespace IdServer
             });
 
             services.AddScoped<IRoomController, RoomController>();
-            services.AddSingleton<INameGenerator, NameGenerator>();
-            services.AddSingleton<IPasswordGenerator, PasswordGenerator>();
+            services.AddSingleton<INameDataService, NameDataService>();
+            services.AddSingleton<INameGenerator, NameGeneratorService>();
+            services.AddSingleton<IPasswordDataService, PasswordDataService>();
+            services.AddSingleton<IPasswordGenerator, PasswordGeneratorService>();
             services.AddSingleton<IColorGenerator, ColorGenerator>();
 
             services.AddDbContextPool<ApplicationDbContext>(options =>

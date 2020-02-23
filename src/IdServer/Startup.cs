@@ -69,17 +69,17 @@ namespace IdServer
                 iis.AutomaticAuthentication = false;
             });
 
-            services.AddScoped<IRoomController, RoomController>();
-            services.AddSingleton<INameDataService, NameDataService>();
-            services.AddSingleton<INameGenerator, NameGeneratorService>();
-            services.AddSingleton<IPasswordDataService, PasswordDataService>();
-            services.AddSingleton<IPasswordGenerator, PasswordGeneratorService>();
-            services.AddSingleton<IColorGenerator, ColorGenerator>();
-
             services.AddDbContextPool<ApplicationDbContext>(options =>
             {
                 options.UseSqlServer(Configuration.GetConnectionString("ComfyDotDB"));
             });
+
+            services.AddScoped<IRoomController, RoomController>();
+            services.AddSingleton<INameDataService, NameDataService>();
+            services.AddScoped<INameGeneratorService, NameGeneratorService>();
+            services.AddSingleton<IPasswordDataService, PasswordDataService>();
+            services.AddScoped<IPasswordGeneratorService, PasswordGeneratorService>();
+            services.AddSingleton<IColorGenerator, ColorGenerator>();
 
             services.AddIdentity<User, IdentityRole>(options =>
             {

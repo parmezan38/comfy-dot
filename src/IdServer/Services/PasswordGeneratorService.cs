@@ -3,7 +3,7 @@ using System;
 
 namespace IdServer.Services
 {
-    public class PasswordGeneratorService : IPasswordGenerator
+    public class PasswordGeneratorService : IPasswordGeneratorService
     {
         private readonly Random getRandom = new Random();
         private readonly IPasswordDataService _passwordDataService;

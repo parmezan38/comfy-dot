@@ -22,28 +22,25 @@ namespace IdentityServer4.Controllers.UI
     [AllowAnonymous]
     public class AccountController : Controller
     {
-        private readonly ApplicationDbContext _db;
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
         private readonly IIdentityServerInteractionService _interaction;
         private readonly IClientStore _clientStore;
         private readonly IEventService _events;
-        private readonly INameGenerator _nameGenerator;
+        private readonly INameGeneratorService _nameGenerator;
         private readonly IColorGenerator _colorGenerator;
-        private readonly IPasswordGenerator _passwordGenerator;
+        private readonly IPasswordGeneratorService _passwordGenerator;
 
         public AccountController(
-            ApplicationDbContext db,
             UserManager<User> userManager,
             SignInManager<User> signInManager,
             IIdentityServerInteractionService interaction,
             IClientStore clientStore,
             IEventService events,
-            INameGenerator nameGenerator,
+            INameGeneratorService nameGenerator,
             IColorGenerator colorGenerator,
-            IPasswordGenerator passwordGenerator)
+            IPasswordGeneratorService passwordGenerator)
         {
-            _db = db;
             _userManager = userManager;
             _signInManager = signInManager;
             _interaction = interaction;
@@ -158,26 +155,11 @@ namespace IdentityServer4.Controllers.UI
             return View(model);
         }
 
-        public async Task<string> GetNewName(int timeout = 0)
-        {
-            if (timeout >= _nameGenerator.NumberOfPossibleNames)
-            {
-                throw new Exception("Error trying to generate Username. Try again later");
-            }
-            string name = _nameGenerator.GenerateName();
-            var exists = await _db.Users.FirstOrDefaultAsync(e => e.UserName == name);
-            if (exists != null)
-            {
-                return await GetNewName(timeout + 1);
-            }
-            return name;
-        }
-
         public async Task<PartialViewResult> UserName()
         {
             try
             {
-                string userName = await GetNewName();
+                string userName = await _nameGenerator.GetName();
                 UserNameViewModel model = new UserNameViewModel()
                 {
                     UserName = userName,

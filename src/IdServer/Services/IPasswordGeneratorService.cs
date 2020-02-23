@@ -1,6 +1,6 @@
 ﻿namespace IdServer.Services
 {
-    public interface IPasswordGenerator
+    public interface IPasswordGeneratorService
     {
         string GeneratePassword();
     }

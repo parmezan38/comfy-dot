@@ -1,32 +1,51 @@
-﻿using IdServer.Data.ServicesData;
+﻿using IdServer.Data;
+using IdServer.Data.ServicesData;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace IdServer.Services
 {
-    public class NameGeneratorService : INameGenerator
+    public class NameGeneratorService : INameGeneratorService
     {
-        public int NumberOfPossibleNames { get; set; }
-        private INameDataService _nameDataService;
+        private int NumberOfPossibleNames { get; set; }
+        private readonly ApplicationDbContext _db;
+        private readonly INameDataService _nameDataService;
 
-        public NameGeneratorService(INameDataService nameDataService)
+        public NameGeneratorService(INameDataService nameDataService, ApplicationDbContext db)
         {
+            _db = db;
             _nameDataService = nameDataService;
             NumberOfPossibleNames = GetNumberOfPossibleResults();
         }
 
-        public string GenerateName()
+        public async Task<string> GetName()
         {
-            NameData data = _nameDataService.GetNameData();
-            string name = "";
-            List<string> randomPattern = GetRandomPattern(data);
-            randomPattern.ForEach(currentType => {
-                string namePiece = currentType == "Two" ? GetRandomPart("Two", data)
-                  : currentType == "Three" ? GetRandomPart("Three", data)
-                    : currentType == "Mid" ? GetRandomPart("Mid", data)
-                      : "_";
-                name += namePiece;
-            });
+            bool exists = false;
+            string name;
+            int timeout = 0;
+
+            do
+            {
+                name = GenerateName();
+                var existingUser = await _db.Users.FirstOrDefaultAsync(e => e.UserName == name);
+
+                if (existingUser != null)
+                {
+                    exists = true;
+                    timeout++;
+                } else
+                {
+                    exists = false;
+                }
+            } while (exists && timeout <= NumberOfPossibleNames);
+
+            if (exists)
+            {
+                throw new Exception("Error trying to generate Username. Try again later");
+            }
+
             return name;
         }
 
@@ -65,7 +84,7 @@ namespace IdServer.Services
             return DecapitalizaAndRemoveSpaces(result);
         }
 
-        public int GetNumberOfPossibleResults()
+        private int GetNumberOfPossibleResults()
         {
             NameData data = _nameDataService.GetNameData();
             int result = 0;
@@ -80,6 +99,21 @@ namespace IdServer.Services
             return result;
         }
 
+        private string GenerateName()
+        {
+            NameData data = _nameDataService.GetNameData();
+            string name = "";
+            List<string> randomPattern = GetRandomPattern(data);
+            randomPattern.ForEach(currentType => {
+                string namePiece = currentType == "Two" ? GetRandomPart("Two", data)
+                  : currentType == "Three" ? GetRandomPart("Three", data)
+                    : currentType == "Mid" ? GetRandomPart("Mid", data)
+                      : "_";
+                name += namePiece;
+            });
+            return name;
+        }
+
         private string DecapitalizaAndRemoveSpaces(string name)
         {
             string str = name.Replace(' ', '_');
@@ -88,14 +122,14 @@ namespace IdServer.Services
 
         private List<string> GetRandomPattern(NameData data)
         {
-            int index = new Random().Next(0, data.Patterns.Count - 1);
+            int index = new Random().Next(0, data.Patterns.Count);
             return data.Patterns[index];
         }
 
         private string GetRandomPart(string key, NameData data)
         {
             List<string> part = data.Parts[key];
-            int index = new Random().Next(0, part.Count - 1);
+            int index = new Random().Next(0, part.Count);
             return part[index];
         }
     }

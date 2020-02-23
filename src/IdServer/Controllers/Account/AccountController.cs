@@ -57,6 +57,7 @@ namespace IdentityServer4.Controllers.UI
         [HttpGet]
         public IActionResult Login(string returnUrl = "/Account/LoggedIn")
         {
+            HttpContext.Response.Headers.Add("Content-Security-Policy", "style-src-elem https://fonts.googleapis.com/ 'self'");
             LoginViewModel user = new LoginViewModel();
             user.ReturnUrl = returnUrl;
             return View(user);

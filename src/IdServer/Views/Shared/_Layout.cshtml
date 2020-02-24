@@ -5,8 +5,7 @@
     if (!true.Equals(ViewData["signed-out"]))
     {
         name = Context.User?.GetDisplayName();
-        // TODO: Get from NameGenerator service
-        // name = NameGenerator.FilterForView(name);
+        name = NameFilters.FilterForView(name);
     }
 }
 <!DOCTYPE html>

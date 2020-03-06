@@ -17,6 +17,10 @@ To start the client server, run:
 
 ## Server
 
-Open the ComfyDot.sln project file with Visual Studio, and run with SelfHost or IIS Express.
+Navigate to src/IdServer:
+
+```dotnet ef database update```
+
+Open the ComfyDot.sln project file inside root folder with Visual Studio, and run with SelfHost or IIS Express.
 
 Note: This app currently doesn't have HTTPS support out of the box, and isn't safe for production. You need to create your own SSL certificates and configure both client and server to use them to be able host on HTTPS.
